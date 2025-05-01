@@ -66,8 +66,15 @@ def get_recommends(book_title):
   return books
 
 name=st.text_input("Enter the name of the book", "Where the Heart Is (Oprah's Book Club (Paperback))")
-books = get_recommends(name)
-st.write(f"The recommended books are:")
-for book in books:
-  st.write(book)
+if not name:
+  st.write("No book was given")
+
+else:
+  try:
+    books=get_recommends(name)
+    st.write(f"The recommended books are:")
+    for book in books:
+      st.write(book)
   
+  except Exception as e:
+    st.write("The book you've written is not in our Datasets and can not be used for recommendation. Please try another one!")
